@@ -14,7 +14,7 @@ UpdateURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/updates/$ba
 
 %post
     yum -y install gcc gcc-c++ gcc-gfortran
-    yum -y install make patch m4
+    yum -y install make patch m4 git
     yum -y install file
     yum -y install openssl-devel
     yum -y install libibverbs-devel
@@ -27,3 +27,4 @@ UpdateURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/updates/$ba
     yum -y clean all
     mkdir -p /ichec/home
     mkdir -p /ichec/work
+    pip install --install-option "--prefix=/opt/easybuild"
