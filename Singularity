@@ -27,4 +27,18 @@ UpdateURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/updates/$ba
     yum -y clean all
     mkdir -p /ichec/home
     mkdir -p /ichec/work
-    pip install --install-option "--prefix=/opt/easybuild"
+    # install easybuild
+    cd /
+    wget https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py
+    PREFIX=/opt/apps/easybuild
+    chmod 777 /opt /opt/apps
+    useradd easybuild
+    mkdir /easybuild
+    chown easybuild:easybuild /easybuild
+    runuser easybuild -c "python /bootstrap_eb.py $PREFIX"
+    chmod 755 /opt /opt/apps
+    rm -rf /easybuild /bootstrap_eb.py
+
+%environment
+    export MODULEPATH=/opt/apps/easybuild/modules/all:$MODULEPATH
+    . /etc/profile
