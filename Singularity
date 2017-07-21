@@ -24,7 +24,6 @@ UpdateURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/updates/$ba
     yum -y install python-pip
     yum -y install Lmod
     yum -y install python-setuptools
-    yum -y install git
     yum -y clean all
     mkdir -p /ichec/home
     mkdir -p /ichec/work
